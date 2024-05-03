@@ -1,0 +1,1 @@
+java -jar k-rabbitmq-cdr.jar --source-type AMQP --source-uri amqp://guest:guest@localhost:5672/vh1 --source-queue source --target-type AMQP --target-uri amqp://guest:guest@localhost:5673/vh2 --target-queue dest

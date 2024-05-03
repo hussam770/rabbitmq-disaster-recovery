@@ -1,0 +1,1 @@
+java -jar k-rabbitmq-cdr.jar --source-type FILE --directory /home/hussam/rabbitmq-queue-restore/queues-payload/ --target-type AMQP --target-uri amqp://guest:guest@localhost:5672/vh2 --target-queue dest --transfer-type BUFFERED --process-type SEQUENTIAL

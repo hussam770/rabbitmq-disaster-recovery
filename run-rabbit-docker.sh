@@ -1,0 +1,1 @@
+docker run -p 15673:15672 -p 5673:5672 -d rabbitmq:3-management
