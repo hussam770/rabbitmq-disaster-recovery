@@ -35,7 +35,7 @@ die() {
 
 usage() {
     cat <<USAGE_TEXT
-Usage: ${script_name} [-h | --help] [-a <ARG>] [--abc <ARG>] [-f | --flag]
+Usage: ${script_name} [-h] [-s <ARG> --sport <ARG> --sauth <ARG> -d <ARG> --dport <ARG> --dauth <ARG>]
 
 DESCRIPTION
     RabbitMQ utility to move messages from source rabbitMQ server to a destnation server 
@@ -49,16 +49,19 @@ DESCRIPTION
         Destination AMQP server.
 
     --sport
-        Source AMQP server ports 15672:5672.
+        Source AMQP server ports e.g 15672:5672.
 
     --dport
-        Destinatioin AMQP server ports 15672:5672.
+        Destinatioin AMQP server ports e.g 15672:5672.
 
     --sauth
         Source AMQP server username:password.
 
     --dauth
         Destinatioin AMQP server username:password.
+
+    AUTHERS:
+       Hussam abu-libdeh
 
 USAGE_TEXT
 }
