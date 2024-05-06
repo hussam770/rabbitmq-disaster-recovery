@@ -299,7 +299,7 @@ fi
 
 if [ "$direction" = "FTS" ]; then
 	echo "Copy messages from file system to destination server..." 
-	
+	curl -u ${destinationauth} -H "Content-Type: application/json" -X POST -T ${defintion_file} ${destination}:${http_dest_port}/api/definitions
 	while read -r val ; do
 		queuename=$( jq -r '.name' <<< ${val})
 		vhname=/$( jq -r '.vhost' <<< ${val})
