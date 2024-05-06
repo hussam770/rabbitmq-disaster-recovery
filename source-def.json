@@ -23,6 +23,9 @@
       "name": "vh2"
     },
     {
+      "name": "NotificationSystem"
+    },
+    {
       "name": "/"
     },
     {
@@ -47,6 +50,13 @@
     {
       "user": "guest",
       "vhost": "vh1",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "guest",
+      "vhost": "NotificationSystem",
       "configure": ".*",
       "write": ".*",
       "read": ".*"
@@ -85,6 +95,15 @@
       "auto_delete": false,
       "arguments": {
         "x-queue-type": "quorum"
+      }
+    },
+    {
+      "name": "error",
+      "vhost": "NotificationSystem",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
       }
     },
     {

@@ -48,6 +48,12 @@ DESCRIPTION
 
     -d
         Destination AMQP server.
+		
+    -r 
+        Direction STS : server to server , STF : server to file system , FTS : file system to Server , PURGE : delete queue contents
+		
+    -f 
+        File system directory
 
     --sport
         Source AMQP server ports e.g 15672:5672.
@@ -61,7 +67,7 @@ DESCRIPTION
     --dauth
         Destinatioin AMQP server username:password.
 
-    AUTHERS:
+    AUTHER:
        Hussam abu-libdeh
 
 USAGE_TEXT
@@ -72,7 +78,7 @@ for arg in "$@"; do
   case "$arg" in
   	'-s')   set -- "$@" '-s'   ;;
   	'-d')   set -- "$@" '-d'   ;;
-	'-h')   set -- "$@" '-h'   ;;
+	'--help')   set -- "$@" '-h'   ;;
 	'-r')   set -- "$@" '-r'   ;;
 	'-f')   set -- "$@" '-f'   ;;
     '--sport')   set -- "$@" '-p'   ;;
@@ -83,7 +89,7 @@ for arg in "$@"; do
   esac
 done
 
-OPTSTRING="s:d:p:t:u:k:h:r:f:"
+OPTSTRING=":s:d:p:t:u:k:hr:f:"
 
 while getopts ${OPTSTRING} opt; do
   case "${opt}" in
@@ -110,7 +116,7 @@ while getopts ${OPTSTRING} opt; do
       ;;
 	h)
       usage
-      die "error: parsing options" 1
+      exit 1
       ;;
 	r)
 	  if [ "${OPTARG}" = "STS" ] || [ "${OPTARG}" = "STF" ] || [ "${OPTARG}" = "FTS" ] || [ "${OPTARG}" = "PURGE" ]
@@ -122,7 +128,7 @@ while getopts ${OPTSTRING} opt; do
 	  fi
       ;;
     :)
-	  echo "Invalid option usage , type -h for help."
+	  echo "Invalid option usage , type -h for help..."
 	  exit 1
       ;;
     ?)
