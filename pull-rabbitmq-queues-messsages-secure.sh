@@ -48,10 +48,10 @@ DESCRIPTION
 
     -d
         Destination AMQP server.
-		
+
     -r 
         Direction STS : server to server , STF : server to file system , FTS : file system to Server , PURGE : delete queue contents
-		
+
     -f 
         File system directory
 
@@ -76,16 +76,16 @@ USAGE_TEXT
 for arg in "$@"; do
   shift
   case "$arg" in
-  	'-s')   set -- "$@" '-s'   ;;
-  	'-d')   set -- "$@" '-d'   ;;
-	'--help')   set -- "$@" '-h'   ;;
-	'-r')   set -- "$@" '-r'   ;;
-	'-f')   set -- "$@" '-f'   ;;
+        '-s')   set -- "$@" '-s'   ;;
+        '-d')   set -- "$@" '-d'   ;;
+        '--help')   set -- "$@" '-h'   ;;
+        '-r')   set -- "$@" '-r'   ;;
+        '-f')   set -- "$@" '-f'   ;;
     '--sport')   set -- "$@" '-p'   ;;
     '--dport') set -- "$@" '-t'   ;;
     '--sauth')   set -- "$@" '-u'   ;;
     '--dauth')     set -- "$@" '-k'   ;;
-	*)          set -- "$@" "$arg" ;;
+        *)          set -- "$@" "$arg" ;;
   esac
 done
 
@@ -99,37 +99,37 @@ while getopts ${OPTSTRING} opt; do
     d)
       destination="${OPTARG}"
       ;;
-	p)
+        p)
       sourceports="${OPTARG}"
       ;;
-	t)
+        t)
       destinationports="${OPTARG}"
       ;;
-	u)
+        u)
       sourceauth="${OPTARG}"
       ;;
-	k)
+        k)
       destinationauth="${OPTARG}"
       ;;
-	f)
+        f)
       filedir="${OPTARG}"
       ;;
-	h)
+        h)
       usage
       exit 1
       ;;
-	r)
-	  if [ "${OPTARG}" = "STS" ] || [ "${OPTARG}" = "STF" ] || [ "${OPTARG}" = "FTS" ] || [ "${OPTARG}" = "PURGE" ]
-	  then 
-	  	direction="${OPTARG}"
-	  else 
-	  	echo "Invalid option: -${OPTARG}. , direction must be one of the following STS , STF , FTS , PURGE"
-      	exit 1
-	  fi
+        r)
+          if [ "${OPTARG}" = "STS" ] || [ "${OPTARG}" = "STF" ] || [ "${OPTARG}" = "FTS" ] || [ "${OPTARG}" = "PURGE" ]
+          then 
+                direction="${OPTARG}"
+          else 
+                echo "Invalid option: -${OPTARG}. , direction must be one of the following STS , STF , FTS , PURGE"
+        exit 1
+          fi
       ;;
     :)
-	  echo "Invalid option usage , type -h for help..."
-	  exit 1
+          echo "Invalid option usage , type -h for help..."
+          exit 1
       ;;
     ?)
       echo "Invalid option usage , type -h for help."
@@ -142,99 +142,99 @@ invalid_flag=0
 if [ "$direction" = "STS" ]; then
 
 echo "Direction : server to server ..." 
-	if [ -z "${source}" ]; then
-		invalid_flag=1
-		echo "Missing source hostname, specify it with -h parameter"
-	fi
+        if [ -z "${source}" ]; then
+                invalid_flag=1
+                echo "Missing source hostname, specify it with -h parameter"
+        fi
 
-	if [ -z "${destination}" ]; then
-		invalid_flag=1
-		echo "Missing destination hostname, specify it with -h parameter"
-	fi
+        if [ -z "${destination}" ]; then
+                invalid_flag=1
+                echo "Missing destination hostname, specify it with -h parameter"
+        fi
 
-	if [ -z "${sourceports}" ]; then
-		invalid_flag=1
-		echo "Missing source ports, specify it with -h parameter"
-	fi
+        if [ -z "${sourceports}" ]; then
+                invalid_flag=1
+                echo "Missing source ports, specify it with -h parameter"
+        fi
 
-	if [ -z "${destinationports}" ]; then
-		invalid_flag=1
-		echo "Missing destination ports, specify it with -h parameter"
-	fi
+        if [ -z "${destinationports}" ]; then
+                invalid_flag=1
+                echo "Missing destination ports, specify it with -h parameter"
+        fi
 
-	if [ -z "${sourceauth}" ]; then
-		invalid_flag=1
-		echo "Missing source authentication values, specify it with -h parameter"
-	fi
+        if [ -z "${sourceauth}" ]; then
+                invalid_flag=1
+                echo "Missing source authentication values, specify it with -h parameter"
+        fi
 
-	if [ -z "${destinationauth}" ]; then
-		invalid_flag=1
-		echo "Missing destination authentication values, specify it with -h parameter"
-	fi
+        if [ -z "${destinationauth}" ]; then
+                invalid_flag=1
+                echo "Missing destination authentication values, specify it with -h parameter"
+        fi
 fi
 
 if [ "$direction" = "STF" ]; then
-	if [ -z "${source}" ]; then
-		invalid_flag=1
-		echo "Missing source hostname, specify it with -h parameter"
-	fi
+        if [ -z "${source}" ]; then
+                invalid_flag=1
+                echo "Missing source hostname, specify it with -h parameter"
+        fi
 
-	if [ -z "${sourceports}" ]; then
-		invalid_flag=1
-		echo "Missing source ports, specify it with -h parameter"
-	fi
+        if [ -z "${sourceports}" ]; then
+                invalid_flag=1
+                echo "Missing source ports, specify it with -h parameter"
+        fi
 
-	if [ -z "${sourceauth}" ]; then
-		invalid_flag=1
-		echo "Missing source authentication values, specify it with -h parameter"
-	fi
-	if [ -z "${filedir}" ]; then
-		invalid_flag=1
-		echo "Missing file directory values, specify it with -h parameter"
-	fi
+        if [ -z "${sourceauth}" ]; then
+                invalid_flag=1
+                echo "Missing source authentication values, specify it with -h parameter"
+        fi
+        if [ -z "${filedir}" ]; then
+                invalid_flag=1
+                echo "Missing file directory values, specify it with -h parameter"
+        fi
 fi
 
 if [ "$direction" = "FTS" ]; then
 
 
-	if [ -z "${destination}" ]; then
-		invalid_flag=1
-		echo "Missing destination hostname, specify it with -h parameter"
-	fi
+        if [ -z "${destination}" ]; then
+                invalid_flag=1
+                echo "Missing destination hostname, specify it with -h parameter"
+        fi
 
-	if [ -z "${destinationports}" ]; then
-		invalid_flag=1
-		echo "Missing destination ports, specify it with -h parameter"
-	fi
+        if [ -z "${destinationports}" ]; then
+                invalid_flag=1
+                echo "Missing destination ports, specify it with -h parameter"
+        fi
 
-	if [ -z "${destinationauth}" ]; then
-		invalid_flag=1
-		echo "Missing destination authentication values, specify it with -h parameter"
-	fi
-	
-	if [ -z "${filedir}" ]; then
-		invalid_flag=1
-		echo "Missing file directory values, specify it with -h parameter"
-	fi
+        if [ -z "${destinationauth}" ]; then
+                invalid_flag=1
+                echo "Missing destination authentication values, specify it with -h parameter"
+        fi
+
+        if [ -z "${filedir}" ]; then
+                invalid_flag=1
+                echo "Missing file directory values, specify it with -h parameter"
+        fi
 fi
 
 if [ "$direction" = "PURGE" ]; then
 
 
-	if [ -z "${destination}" ]; then
-		invalid_flag=1
-		echo "Missing destination hostname, specify it with -h parameter"
-	fi
+        if [ -z "${destination}" ]; then
+                invalid_flag=1
+                echo "Missing destination hostname, specify it with -h parameter"
+        fi
 
-	if [ -z "${destinationports}" ]; then
-		invalid_flag=1
-		echo "Missing destination ports, specify it with -h parameter"
-	fi
+        if [ -z "${destinationports}" ]; then
+                invalid_flag=1
+                echo "Missing destination ports, specify it with -h parameter"
+        fi
 
-	if [ -z "${destinationauth}" ]; then
-		invalid_flag=1
-		echo "Missing destination authentication values, specify it with -h parameter"
-	fi
+        if [ -z "${destinationauth}" ]; then
+                invalid_flag=1
+                echo "Missing destination authentication values, specify it with -h parameter"
+        fi
 fi
 
 if ((invalid_flag)); then
@@ -257,90 +257,80 @@ if [ "$direction" = "STS" ]; then
 
 echo "direction is ${direction} ..."
 echo "Copy messages from source server to destination server ..." 
-	curl -u ${sourceauth} -X GET https://${source}:${http_source_port}/api/definitions | jq > ${defintion_file}
+        #curl -u ${sourceauth} -X GET https://${source}:${http_source_port}/api/definitions | jq > ${defintion_file}
 
-	curl -u ${destinationauth} -H "Content-Type: application/json" -X POST -T ${defintion_file} ${destination}:${http_dest_port}/api/definitions
+        #curl -u ${destinationauth} -H "Content-Type: application/json" -X POST -T ${defintion_file} ${destination}:${http_dest_port}/api/definitions
 
-	while read -r val ; do
-		queuename=$( jq -r '.name' <<< ${val})
-		vhname=/$( jq -r '.vhost' <<< ${val})
-		if [ "$vhname" == "//" ]; then
-			echo "default virtual host.."	
-			unset vhname
-		fi
-		echo "Copying queue messeges : ${queuename}, exists in virtual host : ${vhname} to the specified destination"
-		java -jar k-rabbitmq-cdr.jar --source-type AMQP --source-uri amqp://${sourceauth}@${source}:${AMQP_source_port}${vhname} --source-queue "${queuename}" --target-type AMQP --target-uri amqp://${destinationauth}@${destination}:${AMQP_dest_port}${vhname} --target-queue "${queuename}"
-		echo "Copying to queue ${queuename} finished ..."
-	done < <(jq -rc '.queues[]' ${defintion_file})
+        while read -r val ; do
+                queuename=$( jq -r '.name' <<< ${val})
+                vhname=/$( jq -r '.vhost' <<< ${val})
+                if [ "$vhname" == "//" ]; then
+                        echo "default virtual host.."
+                        unset vhname
+                fi
+                echo "Copying queue messeges : ${queuename}, exists in virtual host : ${vhname} to the specified destination"
+                java -jar k-rabbitmq-cdr.jar --source-type AMQP --source-uri amqp://${sourceauth}@${source}:${AMQP_source_port}${vhname} --source-queue "${queuename}" --target-type AMQP --target-uri amqp://${destinationauth}@${destination}:${AMQP_dest_port}${vhname} --target-queue "${queuename}"
+                echo "Copying to queue ${queuename} finished ..."
+        done < <(jq -rc '.queues[]' ${defintion_file})
 
 fi
 
 if [ "$direction" = "STF" ]; then
-	echo "Copy messages from source server to file system $filedir..." 
-	mkdir -p $filedir
-	curl -u ${sourceauth} -X GET https://${source}:${http_source_port}/api/definitions | jq > ${defintion_file}
-	
-	while read -r val ; do
-		queuename=$( jq -r '.name' <<< ${val})
-		vhname=/$( jq -r '.vhost' <<< ${val})
-		defaultvh_dir=""
-		if [ "$vhname" == "//" ]; then
-			echo "default virtual host.."
-			defaultvh_dir="/root"
-			unset vhname
-		fi
-		mkdir -p ${filedir}/${vhname}${defaultvh_dir}
-		echo "Copying queue messeges : ${queuename}, exists in virtual host : ${vhname} to the specified file system ..."
-		java -jar k-rabbitmq-cdr.jar --source-type AMQP --source-uri amqp://${sourceauth}@${source}:${AMQP_source_port}${vhname} --source-queue "${queuename}" --target-type FILE --directory ${filedir}${vhname}${defaultvh_dir} --transfer-type BUFFERED --process-type SEQUENTIAL
-		echo "Copying from queue ${queuename} to directory ${filedir}${vhname} finished ..."
-	done < <(jq -rc '.queues[]' ${defintion_file})
+        echo "Copy messages from source server to file system $filedir..." 
+        mkdir -p $filedir
+        #curl -u ${sourceauth} -X GET https://${source}:${http_source_port}/api/definitions | jq > ${defintion_file}
+
+        while read -r val ; do
+                queuename=$( jq -r '.name' <<< ${val})
+                vhname=/$( jq -r '.vhost' <<< ${val})
+                defaultvh_dir=""
+                if [ "$vhname" == "//" ]; then
+                        echo "default virtual host.."
+                        defaultvh_dir="/root"
+                        unset vhname
+                fi
+                mkdir -p ${filedir}/${vhname}${defaultvh_dir}/${queuename}
+                echo "Copying queue messeges : ${queuename}, exists in virtual host : ${vhname} to the specified file system ..."
+                java -jar k-rabbitmq-cdr.jar --source-type AMQP --source-uri amqp://${sourceauth}@${source}:${AMQP_source_port}${vhname} --source-queue "${queuename}" --target-type FILE --directory ${filedir}${vhname}${defaultvh_dir}/${queuename} --transfer-type BUFFERED --process-type SEQUENTIAL
+                echo "Copying from queue ${queuename} to directory ${filedir}${vhname} finished ..."
+        done < <(jq -rc '.queues[]' ${defintion_file})
 fi
 
 
 if [ "$direction" = "FTS" ]; then
-	echo "Copy messages from file system to destination server..." 
-	curl -u ${destinationauth} -H "Content-Type: application/json" -X POST -T ${defintion_file} ${destination}:${http_dest_port}/api/definitions
-	while read -r val ; do
-		queuename=$( jq -r '.name' <<< ${val})
-		vhname=/$( jq -r '.vhost' <<< ${val})
-		defaultvh_dir=""
-		if [ "$vhname" == "//" ]; then
-			echo "default virtual host.."
-			defaultvh_dir="/root"
-			unset vhname
-		fi
-		echo "Copying queue messeges : ${queuename}, exists in virtual host : ${vhname} to the destination server ..."
-		java -jar k-rabbitmq-cdr.jar --source-type FILE --directory ${filedir}${vhname}${defaultvh_dir} --target-type AMQP --target-uri amqp://${destinationauth}@${destination}:${AMQP_dest_port}${vhname} --target-queue "${queuename}" --transfer-type BUFFERED --process-type SEQUENTIAL
-		echo "Copying from queue ${queuename} to directory ${filedir}${vhname} finished ..."
-	done < <(jq -rc '.queues[]' ${defintion_file})
+        echo "Copy messages from file system to destination server..." 
+        #curl -u ${destinationauth} -H "Content-Type: application/json" -X POST -T ${defintion_file} ${destination}:${http_dest_port}/api/definitions
+        while read -r val ; do
+                queuename=$( jq -r '.name' <<< ${val})
+                vhname=/$( jq -r '.vhost' <<< ${val})
+                defaultvh_dir=""
+                if [ "$vhname" == "//" ]; then
+                        echo "default virtual host.."
+                        defaultvh_dir="/root"
+                        unset vhname
+                fi
+                echo "Copying queue messeges : ${queuename}, exists in virtual host : ${vhname} to the destination server ..."
+                java -jar k-rabbitmq-cdr.jar --source-type FILE --directory ${filedir}${vhname}${defaultvh_dir}/${queuename} --target-type AMQP --target-uri amqp://${destinationauth}@${destination}:${AMQP_dest_port}${vhname} --target-queue "${queuename}" --transfer-type BUFFERED --process-type SEQUENTIAL
+                echo "Copying from queue ${queuename} to directory ${filedir}${vhname} finished ..."
+        done < <(jq -rc '.queues[]' ${defintion_file})
 rm -rf ${filedir}
 fi
 
 if [ "$direction" = "PURGE" ]; then
-	echo "Copy messages from file system to destination server..." 
-	
-	while read -r val ; do
-		queuename=$( jq -r '.name' <<< ${val})
-		echo "queue name before : $queuename"
-		queuename=$(echo $queuename | sed 's/ /%20/g')
-		echo "queue name after : $queuename"
-		vhname=$( jq -r '.vhost' <<< ${val})
-		echo "vertual host :: $vhname"
-		if [ "$vhname" == "/" ]; then
-			echo "default virtual host.............."
-			vhname="%2F"
-		fi
-		echo "curl -i -u ${destinationauth} -H "content-type:application/json" -XDELETE https://${destination}:${http_dest_port}/api/queues/${vhname}/${queuename}/contents"
-		curl -i -u ${destinationauth} -H "content-type:application/json" -XDELETE https://${destination}:${http_dest_port}/api/queues/${vhname}/${queuename}/contents
-	done < <(jq -rc '.queues[]' ${defintion_file})
+        echo "Copy messages from file system to destination server..." 
+
+        while read -r val ; do
+                queuename=$( jq -r '.name' <<< ${val})
+                echo "queue name before : $queuename"
+                queuename=$(echo $queuename | sed 's/ /%20/g')
+                echo "queue name after : $queuename"
+                vhname=$( jq -r '.vhost' <<< ${val})
+                echo "vertual host :: $vhname"
+                if [ "$vhname" == "/" ]; then
+                        echo "default virtual host.............."
+                        vhname="%2F"
+                fi
+                echo "curl -i -u ${destinationauth} -H "content-type:application/json" -XDELETE https://${destination}:${http_dest_port}/api/queues/${vhname}/${queuename}/contents"
+                curl -i -u ${destinationauth} -H "content-type:application/json" -XDELETE https://${destination}:${http_dest_port}/api/queues/${vhname}/${queuename}/contents
+        done < <(jq -rc '.queues[]' ${defintion_file})
 fi
-
-
-
-
-
-
-
-
-
-
